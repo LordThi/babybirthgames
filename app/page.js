@@ -24,8 +24,16 @@ export default function Home() {
     setCount(count+1);
   }
   return (
-    <main className={styles.main}>
-      <h1>Guess my name</h1>
+    <main>
+      <div className={styles.input_background_image}>
+        {/* <Image
+          src="/images/tache_pink.png"
+          className={styles.input_background}
+          width={1366}
+          height={768}
+          alt="pink colored round shape"
+        /> */}
+        <h1>Guess my name</h1>
         <form onSubmit={submitForm}>
           <input type="text" name="input" onChange={handleChange}/>
           <button>Ok</button>
@@ -47,6 +55,8 @@ export default function Home() {
             : null
           }
         </form>
+      </div>
+      
     </main>
   );
 }
