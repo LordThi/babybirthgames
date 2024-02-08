@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import { useState } from "react";
 
 export default function Home() {
@@ -33,10 +33,14 @@ export default function Home() {
           height={768}
           alt="pink colored round shape"
         /> */}
-        <h1>Guess my name</h1>
+        <h1>Qui suis-je ?</h1>
+        <p className={styles.guess_description}>Sauras-tu trouver le prénom de #2 ?</p>
         <form onSubmit={submitForm}>
-          <input type="text" name="input" onChange={handleChange}/>
-          <button>Ok</button>
+          <div className={styles.input_container}>
+            <input className={styles.name_input} type="text" name="input" onChange={handleChange}/>
+            <button className={styles.submit_form_button}>Tenter ma chance</button>
+          </div>
+          
           {
             isSubmitted ?
             <>
