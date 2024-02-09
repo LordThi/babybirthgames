@@ -11,6 +11,9 @@ export default function Home() {
   const [isSubmitted, setIsSubmitted ] = useState(false)
   const [count, setCount] = useState(0)
   const [compareResult, setCompareResult] = useState(null)
+  const [correctLetters, setCorrectLetters] = useState(null)
+  const [wrongLetters, setWrongLetters] = useState(null)
+  const [incorrectLetters, setIncorrectLetters] = useState(null)
 
   const babyName = "Cassandre".toLowerCase() // toLowerCase for futur purpose (ex. other parents entry)
 
@@ -24,11 +27,34 @@ export default function Home() {
     setIsSubmitted(true)
     setNameGuessed(input)
     setCount(count+1)
-    setInput("")
     correctLettersCount(babyName, input)
   }
 
-  const feedback = () => {
+  const resultBubble = () => {
+    return (
+      <>
+      <p>Pour le prénom {nameGuessed},
+      {correctLetters.length === 0 ?
+      "aucune lettre ne correspond, pas de chance"
+        : correctLetters.length === 1 ?
+          "la lettre bien placée est : " 
+          : "les lettres bien placées sont : "
+      }
+        {correctLetters.length}</p>
+        <p>
+          {correctLetters && correctLetters.map((letter, index) => (
+            <span key={index}>
+              {letter}
+              {index === correctLetters.length - 2 ? ' et ' : 
+              index < correctLetters.length - 1 ? ', ' : ''}
+          </span>
+          ))}
+        </p>
+      </>
+    )
+  }
+
+  const emojiFeedback = () => {
     if (count > 4) {
       return <p>🙄</p>
     }
@@ -63,18 +89,27 @@ export default function Home() {
 
   const correctLettersCount = (babyName, nameGuessed) => {
     let resultat = []
+    let correctLetters = []
+    let wrongLetters = []
+    let incorrectLetters = []
   
     for (let i = 0; i < nameGuessed.length; i++) {
       if (babyName[i] === nameGuessed[i]) {
         resultat.push({ id: [i], lettre: nameGuessed[i], etat: "correct" })
+        correctLetters.push(nameGuessed[i])
       } else if (babyName.includes(nameGuessed[i])) {
         resultat.push({ id: [i], lettre: nameGuessed[i], etat: "wrongPlace" })
+        wrongLetters.push(nameGuessed[i])
       } else {
         resultat.push({ id: [i], lettre: nameGuessed[i], etat: "incorrect" })
+        incorrectLetters.push(nameGuessed[i])
       }
     }
   
-    setCompareResult(resultat) 
+    setCompareResult(resultat)
+    setCorrectLetters(correctLetters)
+    setWrongLetters(wrongLetters)
+    setIncorrectLetters(incorrectLetters)
     // return resultat
   }
 
@@ -111,7 +146,7 @@ export default function Home() {
               <p>
                 {
                   compareResult.map((letter) =>
-                  <p key={letter.id}>{letter.lettre} est {letter.etat}</p>
+                  <span key={letter.id}>{letter.lettre} est {letter.etat}, </span>
                   )
                 }
               </p>
@@ -124,7 +159,9 @@ export default function Home() {
         </form>
       </div>
       <div className={styles.feedback}>
-        {feedback()}
+        { count > 0 ?
+        resultBubble() : null}
+        {emojiFeedback()}
       </div>
     </main>
   );
