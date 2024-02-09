@@ -58,7 +58,13 @@
   }
 }
 
+.resultBubble {
+  align-self: center;
+}
+
 .feedback {
+  display: flex;
+  flex-direction: row;
   font-size: 100px;
   align-self: center;
   padding: 0 100px;
