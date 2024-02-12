@@ -81,21 +81,34 @@ export default function Home() {
   }
 
   const emojiFeedback = () => {
+    let emoji;
+
     if (count > 4) {
-      return <p>🙄</p>
+      emoji = <p>🙄</p>;
+    } else {
+      switch (count) {
+        case 1:
+          emoji = <p>😄</p>;
+          break;
+        case 2:
+          emoji = <p>🙂</p>;
+          break;
+        case 3:
+          emoji = <p>😐</p>;
+          break;
+        case 4:
+          emoji = <p>🫤</p>;
+          break;
+        default:
+          emoji = <p>😃</p>;
+      }
     }
-    switch (count) {
-      case 1 :
-        return <p>😄</p>
-      case 2 :
-        return <p>🙂</p>
-      case 3 :
-        return <p>😐</p>
-      case 4 :
-        return <p>🫤</p>
-      default:
-        return <p>😃</p>
-    }
+
+    return (
+      <div className={styles.feedback}>
+        {emoji}
+      </div>
+    )
   }
 
   //idealement distance de Levenshtein
@@ -196,14 +209,12 @@ export default function Home() {
         </form>
       </div>
       <div className={styles.result_container}>
-        <div className={styles.resultBubble_text_illustration}>
+        <div className={styles.resultBubble_text}>
           { count > 0 ?
         resultBubble() : null}
         </div>
-      
-        <div className={styles.feedback}>
           {emojiFeedback()}
-        </div>
+
       </div>
     </main>
     </>
