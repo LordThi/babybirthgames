@@ -16,11 +16,11 @@ export default function Home() {
   const [incorrectLetters, setIncorrectLetters] = useState(null)
   const [extraLetters, setExtraLetters] = useState (null)
 
-  const babyName = "Olympe".toLowerCase() // toLowerCase for futur purpose (ex. other parents entry)
+  const babyName = "Olympe".trim().toLowerCase() // toLowerCase for futur purpose (ex. other parents entry)
 
   const handleChange = (event) => {
     const userEntry = event.target.value
-    setInput(userEntry.toLowerCase())
+    setInput(userEntry.trim().toLowerCase())
     console.log(userEntry)
   }
 
