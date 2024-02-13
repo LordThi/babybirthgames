@@ -209,15 +209,16 @@ export default function Home() {
       <h1>Qui suis-je ?</h1>
     </header>
     <main className={styles.main_container}>
+      <div className={styles.result_container}>
+        <div className={styles.resultBubble_text}>
+          { count > 0 ?
+        resultBubble()
+        : <><p>Bienvenue dans <i>Trouve Le Nom Du Bébé</i>, un petit jeu <strong>simple</strong> codé pour te faire... deviner le nom du bébé, bravo.</p>
+        <p>Alors tente ta chance, n'hésites pas à nous partager ton score.</p></>}
+        </div>
+          {emojiFeedback()}
+      </div>
       <div className={styles.input_background_image}>
-        {/* <Image
-          src="/images/tache_pink.png"
-          className={styles.input_background}
-          width={1366}
-          height={768}
-          alt="pink colored round shape"
-        /> */}
-        <p className={styles.guess_description}>Sauras-tu trouver le prénom de #2 ?</p>
         <form onSubmit={submitForm}>
           <div className={styles.input_container}>
             <input className={styles.name_input} type="text" name="input" onChange={handleChange}/>
@@ -228,30 +229,7 @@ export default function Home() {
             : "Retenter ma chance"}
               </button>
           </div>
-          
-          {
-            isSubmitted ?
-            <>
-              <p>
-                L input dit :&nbsp;
-                {nameGuessed}
-              </p>
-
-                <p>Nombre d&apos;essais: {count}</p>
-                {/* {console.log(typeof correctLettersCount(babyName, nameGuessed))} */}
-            </>
-            : null
-          }
         </form>
-      </div>
-      <div className={styles.result_container}>
-        <div className={styles.resultBubble_text}>
-          { count > 0 ?
-        resultBubble()
-        : <><p>Bienvenue dans <i>Trouve Le Nom Du Bébé</i>, un petit jeu <strong>simple</strong> codé pour te faire... deviner le nom du bébé, bravo.</p>
-        <p>Alors tente ta chance, n'hésites pas à nous partager ton score.</p></>}
-        </div>
-          {emojiFeedback()}
       </div>
     </main>
     </>
