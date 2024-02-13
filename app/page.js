@@ -21,7 +21,6 @@ export default function Home() {
   const handleChange = (event) => {
     const userEntry = event.target.value
     setInput(userEntry.trim().toLowerCase())
-    console.log(userEntry)
   }
 
   const submitForm = (event) => {
