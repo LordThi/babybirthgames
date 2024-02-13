@@ -114,7 +114,8 @@ export default function Home() {
 
 
     return (
-      correctLetters && correctLetters.length === babyName.length && wrongLetters.length === 0 ?
+      // correctLetters && correctLetters.length === babyName.length && wrongLetters.length === 0 && nameGuessed.length === babyName.length?
+      babyName.toLowerCase() === nameGuessed.toLowerCase() ?
         rightName : wrongName
     )
   }
