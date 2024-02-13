@@ -32,58 +32,97 @@ export default function Home() {
     correctLettersCount(babyName, input)
   }
 
+  const helpText = () => {
+    let help
+
+     // Si count est 4, afficher le nombre de lettres
+  if (count === 6) {
+    help = <p><i>Indice:</i> Le prénom comporte {babyName.length} lettres.</p>;
+  }
+  // Pour les autres valeurs de count qui sont positives et paires, afficher une lettre
+  else if (count > 6 && count % 2 === 0) {
+    const index = (count / 2) - 2; // Calculer l'index de la lettre à afficher
+    if (index < babyName.length) {
+      const letter = babyName[index];
+      help = <p><i>Indice:</i> La lettre en {index}e position est <strong><i>{letter.toUpperCase()}</i></strong>.</p>;
+    } else {
+      // Si l'index calculé est en dehors de la longueur de babyName, fournir un message générique ou répéter le dernier indice
+      help = <p>Continue d&apos;essayer !</p>;
+    }
+  }
+  // Message par défaut si aucune des conditions ci-dessus n'est remplie
+  else {
+    help = <p>Un petit coup de main? Je verrai ce que je peux faire au prochain tour.</p>;
+  }
+
+  return help;
+}
+
   const resultBubble = () => {
-    return (
-      <>
-      <p>Pour le prénom <strong>{nameGuessed}</strong>,&nbsp;
-      {correctLetters.length === 0 ?
-      wrongLetters.length > 0 ?
-      "certaines lettres correspondent mais ne sont pas à la bonne place."
-      :"aucune lettre ne correspond, pas de chance..."
-        : correctLetters.length === 1 ?
-          "la seule lettre bien placée est : " 
-          : "les lettres bien placées sont : "
+
+    const rightName = <p>
+      Felicitations, <strong>{nameGuessed}</strong> est le prénom de notre bébé.<br/>
+      Vous avez trouvé après {count} {count > 1 ? "tentatives" : "tentative"}.
+    </p>
+
+    const wrongName = <>
+    <p>Pour le prénom <strong>{nameGuessed}</strong>,&nbsp;
+    {correctLetters.length === 0 ?
+    wrongLetters.length > 0 ?
+    "certaines lettres correspondent mais ne sont pas à la bonne place."
+    :"aucune lettre ne correspond, pas de chance..."
+      : correctLetters.length === 1 ?
+        "la seule lettre bien placée est : " 
+        : "les lettres bien placées sont : "
+    }
+        {correctLetters && correctLetters.map((letter, index) => (
+          <span key={index}>
+            <strong><i>{letter}</i></strong>
+            {index === correctLetters.length - 2 ? ' et ' : 
+            index < correctLetters.length - 1 ? ', ' : '.'}
+        </span>
+        ))}
+      </p>
+      {wrongLetters && wrongLetters.length > 0 ? <>
+        <p>Il faudrait essayer de replacer&nbsp;
+        {wrongLetters && wrongLetters.map((letter, index) => (
+          <span key={index}>
+            <strong><i>{letter}</i></strong>
+            {index === wrongLetters.length - 2 ? ' et ' : 
+            index < wrongLetters.length - 1 ? ', ' : '.'}
+        </span> 
+        ))}
+      </p></>: null}
+      {
+        extraLetters && extraLetters.length > 0 ? <>
+        <p>Par contre, il y a&nbsp;
+        {extraLetters.length === 1 ?
+        "un" : "des"}&nbsp;
+        {extraLetters && extraLetters.map((letter, index) => (
+          <span key={index}>
+            <strong><i>{letter}</i></strong>
+            {index === extraLetters.length - 2 ? ' et ' : 
+            index < extraLetters.length - 1 ? ', ' : ' '}
+        </span> 
+        ))}
+        en trop.</p></> : null
       }
-          {correctLetters && correctLetters.map((letter, index) => (
-            <span key={index}>
-              {letter}
-              {index === correctLetters.length - 2 ? ' et ' : 
-              index < correctLetters.length - 1 ? ', ' : '.'}
-          </span>
-          ))}
-        </p>
-        {wrongLetters && wrongLetters.length > 0 ? <>
-          <p>Il faudrait essayer de replacer&nbsp;
-          {wrongLetters && wrongLetters.map((letter, index) => (
-            <span key={index}>
-              {letter}
-              {index === wrongLetters.length - 2 ? ' et ' : 
-              index < wrongLetters.length - 1 ? ', ' : '.'}
-          </span> 
-          ))}
-        </p></>: null}
-        {
-          extraLetters && extraLetters.length > 0 ? <>
-          <p>Par contre, il y a&nbsp;
-          {extraLetters.length === 1 ?
-          "un" : "des"}&nbsp;
-          {extraLetters && extraLetters.map((letter, index) => (
-            <span key={index}>
-              {letter}
-              {index === extraLetters.length - 2 ? ' et ' : 
-              index < extraLetters.length - 1 ? ', ' : ' '}
-          </span> 
-          ))}
-          en trop.</p></> : null
-        }
-      </>
+      { count > 4 ?
+        helpText() : null
+      }
+    </>
+
+
+    return (
+      correctLetters && correctLetters.length === babyName.length && wrongLetters.length === 0 ?
+        rightName : wrongName
     )
   }
 
   const emojiFeedback = () => {
     let emoji;
 
-    if (count > 4) {
+    if (wrongLetters && wrongLetters.length === 0 && correctLetters && correctLetters.length === 0) {
       emoji = <p>🙄</p>;
     } else {
       switch (count) {
@@ -211,10 +250,11 @@ export default function Home() {
       <div className={styles.result_container}>
         <div className={styles.resultBubble_text}>
           { count > 0 ?
-        resultBubble() : null}
+        resultBubble()
+        : <><p>Bienvenue dans <i>Trouve Le Nom Du Bébé</i>, un petit jeu <strong>simple</strong> codé pour te faire... deviner le nom du bébé, bravo.</p>
+        <p>Alors tente ta chance, n'hésites pas à nous partager ton score.</p></>}
         </div>
           {emojiFeedback()}
-
       </div>
     </main>
     </>
