@@ -119,21 +119,23 @@ export default function Home() {
   const emojiFeedback = () => {
     let emoji;
 
-    if (wrongLetters && wrongLetters.length === 0 && correctLetters && correctLetters.length === 0) {
-      emoji = <p>🙄</p>;
-    } else {
-      switch (count) {
+    if (incorrectLetters && incorrectLetters.length > 0 && correctLetters && correctLetters.length === 0) {
+      emoji = <p>😅</p>;
+    } else if (babyName && nameGuessed && babyName.toLowerCase() === nameGuessed.toLowerCase()){
+      emoji = <p>🥳</p>;
+    }else {
+      switch (correctLetters.length) {
         case 1:
-          emoji = <p>😄</p>;
+          emoji = <p>🫤</p>;
           break;
         case 2:
-          emoji = <p>🙂</p>;
-          break;
-        case 3:
           emoji = <p>😐</p>;
           break;
+        case 3:
+          emoji = <p>🙂</p>;
+          break;
         case 4:
-          emoji = <p>🫤</p>;
+          emoji = <p>😄</p>;
           break;
         default:
           emoji = <p>😃</p>;
