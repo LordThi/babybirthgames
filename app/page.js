@@ -230,7 +230,8 @@ export default function Home() {
         <form onSubmit={submitForm}>
           <div className={styles.input_container}>
             <input className={styles.name_input} type="text" name="input" onChange={handleChange}/>
-            <button className={styles.submit_form_button}>
+            <button className={BorelFont.className} id={styles.submit_form_button}>
+            {/* <button className={styles.submit_form_button}> */}
               {
                 count < 1 ?
               "Tenter ma chance"
