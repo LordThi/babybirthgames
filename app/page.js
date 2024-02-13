@@ -48,7 +48,7 @@ export default function Home() {
     }
   }
   else {
-    help = <p>Un petit coup de main? Je verrai ce que je peux faire au prochain tour.</p>
+    help = <p>Indice au prochain tour.</p>
   }
 
   return help
@@ -58,14 +58,14 @@ export default function Home() {
 
     const rightName = <p>
       Felicitations, <strong>{nameGuessed}</strong> est le prénom de notre bébé.<br/>
-      Vous avez trouvé après {count} {count > 1 ? "tentatives" : "tentative"}.
+      Tu as trouvé après {count} {count > 1 ? "tentatives" : "tentative"}.
     </p>
 
     const wrongName = <>
     <p>Pour le prénom <strong>{nameGuessed}</strong>,&nbsp;
     {correctLetters.length === 0 ?
     wrongLetters.length > 0 ?
-    "certaines lettres correspondent mais ne sont pas à la bonne place."
+    "certaines lettres ne sont pas à la bonne place."
     :"aucune lettre ne correspond, pas de chance..."
       : correctLetters.length === 1 ?
         "la seule lettre bien placée est : " 
@@ -80,7 +80,7 @@ export default function Home() {
         ))}
       </p>
       {wrongLetters && wrongLetters.length > 0 ? <>
-        <p>Il faudrait essayer de replacer&nbsp;
+        <p>Essaye de replacer&nbsp;
         {wrongLetters && wrongLetters.map((letter, index) => (
           <span key={index}>
             <strong><i>{letter}</i></strong>
@@ -91,7 +91,7 @@ export default function Home() {
       </p></>: null}
       {
         extraLetters && extraLetters.length > 0 ? <>
-        <p>Par contre, il y a&nbsp;
+        <p>Il y a&nbsp;
         {extraLetters.length === 1 ?
         "un" : "des"}&nbsp;
         {extraLetters && extraLetters.map((letter, index) => (
@@ -213,8 +213,8 @@ export default function Home() {
         <div className={styles.resultBubble_text}>
           { count > 0 ?
         resultBubble()
-        : <><p>Bienvenue dans <i>Trouve Le Nom Du Bébé</i>, un petit jeu <strong>simple</strong> codé pour te faire... deviner le nom du bébé, bravo.</p>
-        <p>Alors tente ta chance, n'hésites pas à nous partager ton score.</p></>}
+        : <><p>Bienvenue dans ce petit jeu dont le but est de te faire deviner le nom du bébé.</p>
+        <p>Tente ta chance et n&apos;hésites pas à nous partager ton score.</p></>}
         </div>
           {emojiFeedback()}
       </div>
