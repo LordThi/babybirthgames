@@ -35,27 +35,23 @@ export default function Home() {
   const helpText = () => {
     let help
 
-     // Si count est 4, afficher le nombre de lettres
   if (count === 6) {
-    help = <p><i>Indice:</i> Le prénom comporte {babyName.length} lettres.</p>;
+    help = <p><i>Indice:</i> Le prénom comporte {babyName.length} lettres.</p>
   }
-  // Pour les autres valeurs de count qui sont positives et paires, afficher une lettre
   else if (count > 6 && count % 2 === 0) {
-    const index = (count / 2) - 2; // Calculer l'index de la lettre à afficher
+    const index = (count / 2) - 2
     if (index < babyName.length) {
-      const letter = babyName[index];
-      help = <p><i>Indice:</i> La lettre en {index}e position est <strong><i>{letter.toUpperCase()}</i></strong>.</p>;
+      const letter = babyName[index]
+      help = <p><i>Indice:</i> La lettre en {index}e position est <strong><i>{letter.toUpperCase()}</i></strong>.</p>
     } else {
-      // Si l'index calculé est en dehors de la longueur de babyName, fournir un message générique ou répéter le dernier indice
-      help = <p>Continue d&apos;essayer !</p>;
+      help = <p>Continue d&apos;essayer !</p>
     }
   }
-  // Message par défaut si aucune des conditions ci-dessus n'est remplie
   else {
-    help = <p>Un petit coup de main? Je verrai ce que je peux faire au prochain tour.</p>;
+    help = <p>Un petit coup de main? Je verrai ce que je peux faire au prochain tour.</p>
   }
 
-  return help;
+  return help
 }
 
   const resultBubble = () => {
