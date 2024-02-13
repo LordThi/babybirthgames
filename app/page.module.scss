@@ -95,3 +95,21 @@
   align-self: center;
   margin: 0 20px;
 }
+
+//media queries
+
+@media (max-width: 550px) {
+  .resultBubble_text {
+    max-width: 250px;
+    max-height: 230px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resultBubble_text{
+    margin-left: 40px;
+  }
+  .result_container {
+    height: fit-content;
+  }
+}
