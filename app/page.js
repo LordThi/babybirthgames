@@ -211,7 +211,7 @@ export default function Home() {
   return (
   <>
     <header style={{textAlign:"center"}}>
-      <h1>Qui suis-je ?</h1>
+      <h1 className={BorelFont.className}>Devine mon nom</h1>
     </header>
     <main className={styles.main_container}>
       <div className={styles.result_container}>
