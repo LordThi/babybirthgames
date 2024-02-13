@@ -3,6 +3,9 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { useState } from "react";
+import {Borel} from 'next/font/google';
+
+const BorelFont = Borel({weight:"400", subsets:['latin']})
 
 export default function Home() {
 
