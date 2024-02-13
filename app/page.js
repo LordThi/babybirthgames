@@ -11,10 +11,10 @@ export default function Home() {
   const [isSubmitted, setIsSubmitted ] = useState(false)
   const [count, setCount] = useState(0)
   const [compareResult, setCompareResult] = useState(null)
-  const [correctLetters, setCorrectLetters] = useState(null)
-  const [wrongLetters, setWrongLetters] = useState(null)
-  const [incorrectLetters, setIncorrectLetters] = useState(null)
-  const [extraLetters, setExtraLetters] = useState (null)
+  const [correctLetters, setCorrectLetters] = useState([])
+  const [wrongLetters, setWrongLetters] = useState([])
+  const [incorrectLetters, setIncorrectLetters] = useState([])
+  const [extraLetters, setExtraLetters] = useState ([])
 
   const babyName = "Olympe".trim().toLowerCase() // toLowerCase for futur purpose (ex. other parents entry)
 
