@@ -103,6 +103,10 @@ export default function Home() {
         ))}
         en trop.</p></> : null
       }
+      {
+        (correctLetters && correctLetters.length > 0 || wrongLetters && wrongLetters.length > 0) && incorrectLetters && incorrectLetters.length > 0 ?
+        "Les autres lettres sont inutiles" : null
+      }
       { count > 4 ?
         helpText() : null
       }
