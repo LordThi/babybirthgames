@@ -44,7 +44,7 @@ export default function Home() {
     const index = (count / 2) - 2
     if (index < babyName.length) {
       const letter = babyName[index]
-      help = <p><i>Indice:</i> La lettre en {index}e position est <strong><i>{letter.toUpperCase()}</i></strong>.</p>
+      help = <p><i>Indice:</i> La lettre en {index+1}e position est <strong><i>{letter.toUpperCase()}</i></strong>.</p>
     } else {
       help = <p>Continue d&apos;essayer !</p>
     }
