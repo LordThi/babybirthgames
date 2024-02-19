@@ -241,6 +241,12 @@ export default function Home() {
         </form>
       </div>
     </main>
+    <footer style={{textAlign:"center"}}>
+      <p>
+      Fait avec 🍼 par <a href="https://www.linkedin.com/in/thibautlivigni/">Thibaut Livigni</a>
+      </p>
+      <a href="https://github.com/LordThi/babybirthgames">GitHub du projet</a>
+    </footer>
     </>
   );
 }
